@@ -30,6 +30,7 @@ module.exports.put = (url, body, authToken) => {
 };
 
 module.exports.post = (url, body, authToken) => {
+    console.log(`URL:${url}`);
     return request(
         wrapAuth(
             wrapPost(
