@@ -4,10 +4,10 @@ import Tester from '../Tester';
 var expect = require('chai').expect;
 
 describe('AllQuestionCollectionsTest', () => {
-    it('findAll', () => {
+    it('copy collection', () => {
         Tester.login().then(() => {
-            AllQuestionCollections.findAll().then((collections) => {
-                console.log(JSON.stringify(collections));
+            AllQuestionCollections.find(["State Questions"]).then((collections) => {
+                expect(collections.length).is.equal(1);
             });
         });
     });

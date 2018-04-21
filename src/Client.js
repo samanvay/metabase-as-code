@@ -26,6 +26,10 @@ class Client {
     getResources(resourceName) {
         return gateway.get(urls.createUrl(this.serverBaseURL, `/${resourceName}`), this.authToken);
     }
+
+    post(resourceName, resources) {
+        return gateway.post(urls.createUrl(this.serverBaseURL, `/${resourceName}`), resources, this.authToken);
+    }
 }
 
 export default new Client();
