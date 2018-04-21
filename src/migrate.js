@@ -1,4 +1,4 @@
-const authenticate = require("./authenticate");
+// const authenticate = require("./authenticate");
 const Promise = require("bluebird");
 const join = Promise.join;
 const database = require("./database");
@@ -22,14 +22,14 @@ const authenticateSourceAndDestination = (args) => {
     //     )
     // });
 
-    let sourceAuth = authenticate(args.sourceUrl, args.sourceLogin, args.sourcePassword);
-    let destAuth = authenticate(args.targetUrl, args.targetLogin, args.targetPassword);
-    return join(sourceAuth, destAuth, (sourceSession, targetSession) => {
-        return {
-            source: {url: args.sourceUrl, authToken: sourceSession, database: args.sourceDatabase},
-            target: {url: args.targetUrl, authToken: targetSession, database: args.targetDatabase}
-        }
-    });
+    // let sourceAuth = authenticate(args.sourceUrl, args.sourceLogin, args.sourcePassword);
+    // let destAuth = authenticate(args.targetUrl, args.targetLogin, args.targetPassword);
+    // return join(sourceAuth, destAuth, (sourceSession, targetSession) => {
+    //     return {
+    //         source: {url: args.sourceUrl, authToken: sourceSession, database: args.sourceDatabase},
+    //         target: {url: args.targetUrl, authToken: targetSession, database: args.targetDatabase}
+    //     }
+    // });
 };
 
 const migrate = (args) => {

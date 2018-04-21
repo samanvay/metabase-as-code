@@ -1,9 +1,8 @@
-import auth from "../../../src/auth/authenticate";
-
 var expect = require('chai').expect;
+import Client from '../../../src/Client';
 
 describe('AuthTest', () => {
     it('auth', () => {
-        auth("http://localhost:3000", "metabase@example.com", "!abcd1234");
+        let authenticate = Client.authenticate("http://localhost:3000", "metabase@example.com", "JEpeWJPoEpgres").then();
     });
 });
