@@ -1,5 +1,5 @@
-import AllQuestionCollections from "../../../src/repository/AllQuestionCollections";
-import Tester from '../Tester';
+const AllQuestionCollections = require("../../../src/repository/AllQuestionCollections");
+const Tester = require('../Tester');
 
 var expect = require('chai').expect;
 

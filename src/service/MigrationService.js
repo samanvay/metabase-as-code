@@ -1,8 +1,8 @@
-import _ from "lodash";
-import AllQuestionCollections from "../repository/AllQuestionCollections";
-import QuestionCollection from "../domain/QuestionCollection";
-import AllQuestions from "../repository/AllQuestions";
-import Question from "../domain/Question";
+const _ = require("lodash");
+const AllQuestionCollections = require("../repository/AllQuestionCollections");
+const QuestionCollection = require("../domain/QuestionCollection");
+const AllQuestions = require("../repository/AllQuestions");
+const Question = require("../domain/Question");
 
 class MigrationService {
     static copyQuestionCollections(collectionNames, suffix) {
@@ -26,4 +26,4 @@ class MigrationService {
     }
 }
 
-export default MigrationService;
+module.exports = MigrationService;

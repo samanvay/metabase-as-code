@@ -1,5 +1,5 @@
-import _ from "lodash";
-import Client from '../../src/Client';
+const _ = require("lodash");
+const Client = require('../../src/Client');
 
 class Tester {
     static login() {
@@ -7,4 +7,4 @@ class Tester {
     }
 }
 
-export default Tester;
+module.exports = Tester;

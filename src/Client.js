@@ -32,4 +32,4 @@ class Client {
     }
 }
 
-export default new Client();
+module.exports = new Client();

@@ -1,7 +1,7 @@
-import {expect} from 'chai';
-import _ from "lodash";
-import MigrationService from "../../../src/service/MigrationService";
-import Tester from "../Tester";
+const expect = require("chai").expect;
+const _ = require("lodash");
+const MigrationService = require("../../../src/service/MigrationService");
+const Tester = require("../Tester");
 
 describe('MigrationServiceTest', () => {
     it('copyCollections', () => {

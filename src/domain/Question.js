@@ -1,4 +1,4 @@
-import _ from "lodash";
+const _ = require("lodash");
 
 let _PropertiesToUnsetForNew = ["creator", "created_at", "creator_id", "updated_at"];
 
@@ -12,4 +12,4 @@ class Question {
     }
 }
 
-export default Question;
+module.exports = Question;

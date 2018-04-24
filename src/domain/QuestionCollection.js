@@ -1,4 +1,4 @@
-import _ from "lodash";
+const _ = require("lodash");
 
 class QuestionCollection {
     static hasName(questionCollection, collectionName) {
@@ -14,4 +14,4 @@ class QuestionCollection {
     }
 }
 
-export default QuestionCollection;
+module.exports = QuestionCollection;

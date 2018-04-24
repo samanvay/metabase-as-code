@@ -1,8 +1,7 @@
 {
   "name": "metabase-as-code",
-  "version": "1.0.0",
+  "version": "0.0.23",
   "description": "Metabase as library and some functionality on top of it",
-  "main": "bin/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register test/**/*Test.js"
   },

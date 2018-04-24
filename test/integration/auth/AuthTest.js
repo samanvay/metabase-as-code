@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-import Client from '../../../src/Client';
+const Client = require('../../../src/Client');
 
 describe('AuthTest', () => {
     it('auth', () => {

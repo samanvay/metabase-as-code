@@ -1,6 +1,6 @@
-import _ from "lodash";
-import Client from '../Client';
-import QuestionCollection from "../domain/QuestionCollection";
+const _ = require("lodash");
+const Client = require('../Client');
+const QuestionCollection = require("../domain/QuestionCollection");
 
 class AllQuestionCollections {
     static findAll() {
@@ -20,4 +20,4 @@ class AllQuestionCollections {
     }
 }
 
-export default AllQuestionCollections;
+module.exports = AllQuestionCollections;
