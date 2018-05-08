@@ -1,8 +1,10 @@
+const AllDashboards = require("../repository/AllDashboards");
 const _ = require("lodash");
 const AllQuestionCollections = require("../repository/AllQuestionCollections");
 const QuestionCollection = require("../domain/QuestionCollection");
 const AllQuestions = require("../repository/AllQuestions");
 const Question = require("../domain/Question");
+const Dashboard = require("../domain/Dashboard");
 
 class MigrationService {
     static copyQuestionCollections(collectionNames, suffix) {
@@ -23,6 +25,20 @@ class MigrationService {
             promises.push(promise);
         });
         return Promise.all(promises);
+    }
+
+    static copyDashboard(dashboardName, modifier) {
+        return AllDashboards.find(dashboardName).then((sourceDashboard) => {
+            let copiedDashboard = {"name": "", "description": null};
+            modifier(copiedDashboard);
+            let promises = [];
+            AllDashboards.add(copiedDashboard).then((newDashboard) => {
+                sourceDashboard["ordered_cards"].forEach((sourceOrderedCard) => {
+                    promises.push(AllDashboards.addCard(newDashboard, sourceOrderedCard));
+                });
+            });
+            return Promise.all(promises);
+        });
     }
 }
 

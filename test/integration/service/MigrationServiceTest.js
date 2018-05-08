@@ -17,4 +17,12 @@ describe('MigrationServiceTest', () => {
             });
         });
     });
+
+    it('copy dashboard', function () {
+        Tester.login().then(() => {
+            MigrationService.copyDashboard("NQAS - Karnataka - DH", (dashboard) => {
+                dashboard.name = "NQAS - Karnataka - Laqshya";
+            });
+        });
+    });
 });

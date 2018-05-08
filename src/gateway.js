@@ -23,6 +23,8 @@ const wrapPut = (options, body) => {
 };
 
 module.exports.put = (url, body, authToken) => {
+    console.log(`URL:${url}, METHOD=PUT`);
+    console.log(`URL:${url}, METHOD=PUT, ${JSON.stringify(body)}`);
     return request(
         wrapAuth(
             wrapPut(
@@ -31,6 +33,7 @@ module.exports.put = (url, body, authToken) => {
 
 module.exports.post = (url, body, authToken) => {
     console.log(`URL:${url}, METHOD=POST`);
+    console.log(`URL:${url}, METHOD=POST, ${JSON.stringify(body)}`);
     return request(
         wrapAuth(
             wrapPost(

@@ -27,8 +27,16 @@ class Client {
         return gateway.get(urls.createUrl(this.serverBaseURL, `/${resourceName}`), this.authToken);
     }
 
+    getResource(resourceName, id) {
+        return gateway.get(urls.createUrl(this.serverBaseURL, `/${resourceName}/${id}`), this.authToken);
+    }
+
     post(resourceName, resources) {
         return gateway.post(urls.createUrl(this.serverBaseURL, `/${resourceName}`), resources, this.authToken);
+    }
+
+    put(resourceName, resources) {
+        return gateway.put(urls.createUrl(this.serverBaseURL, `/${resourceName}`), resources, this.authToken);
     }
 }
 

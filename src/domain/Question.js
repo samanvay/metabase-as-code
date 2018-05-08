@@ -1,6 +1,5 @@
+const AnyEntity = require("./AnyEntity");
 const _ = require("lodash");
-
-let _PropertiesToUnsetForNew = ["creator", "created_at", "creator_id", "updated_at"];
 
 class Question {
     static matches(question, questionName) {
@@ -8,7 +7,7 @@ class Question {
     }
 
     static unsetPropertiesForNew(question) {
-        _.unset(question, _PropertiesToUnsetForNew);
+        AnyEntity.unsetPropertiesForNew(question);
     }
 }
 
