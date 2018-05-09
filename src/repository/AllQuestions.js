@@ -3,8 +3,8 @@ const Client = require('../Client');
 const Question = require("../domain/Question");
 
 class AllQuestions {
-    static find(questionName) {
-        return Client.getResources(`card?q=${questionName}`).then((questions) => _.find(questions, (question) => Question.matches(question, questionName)));
+    static find(questionName, collectionName) {
+        return Client.getResources(`card?q=${questionName}`).then((questions) => _.find(questions, (question) => Question.matches(question, questionName, collectionName)));
     }
 
     static add(question) {

@@ -11,10 +11,21 @@ describe('MigrationServiceTest', () => {
     });
 
     it('copyQuestionsWithoutDBChange', function () {
-        Tester.login().then(() => {
-            MigrationService.copyQuestionsWithoutDBChange(["All Assessments"], (question) => {
-                question.name = "All Assessments - Copy";
+        let copyQuestion = function (aoc) {
+            MigrationService.copyQuestionsWithoutDBChange(["Facilities Overview - Area of Concern (A)"], "State Laqshya Questions", (question) => {
+                question.name = `Facilities Overview - Area of Concern (${aoc})`;
+                let native = question["dataset_query"]["native"];
+                native["query"] = native["query"].replace("'A'", `${aoc}`);
             });
+        };
+
+        Tester.login().then(() => {
+            copyQuestion("C");
+            copyQuestion("D");
+            copyQuestion("E");
+            copyQuestion("F");
+            copyQuestion("G");
+            copyQuestion("H");
         });
     });
 

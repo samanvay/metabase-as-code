@@ -14,10 +14,10 @@ class MigrationService {
         });
     }
 
-    static copyQuestionsWithoutDBChange(questionNames, modifier) {
+    static copyQuestionsWithoutDBChange(questionNames, collectionName, modifier) {
         let promises = [];
         questionNames.forEach((questionName) => {
-            let promise = AllQuestions.find(questionName).then(question => {
+            let promise = AllQuestions.find(questionName, collectionName).then(question => {
                 Question.unsetPropertiesForNew(question);
                 modifier(question);
                 return question;
