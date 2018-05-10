@@ -3,7 +3,7 @@ const Client = require('../../src/Client');
 
 class Tester {
     static login() {
-        return Client.authenticate("http://localhost:3000", "metabase@example.com", "JEpeWJPoEpgres");
+        return Client.authenticate("http://localhost:3000", "metabase@example.com", process.env.METABASE_MIGRATOR_PASSWORD);
     }
 }
 

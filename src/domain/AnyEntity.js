@@ -1,6 +1,5 @@
 const _ = require("lodash");
 const _PropertiesToUnsetForNew = ["creator", "created_at", "creator_id", "updated_at"];
-const _PropertiesToUnsetForSubEntityForNew = ["created_at", "updated_at"];
 
 class AnyEntity {
     static unsetFromArray(obj, paths) {
@@ -11,10 +10,6 @@ class AnyEntity {
 
     static unsetPropertiesForNew(anyEntity) {
         AnyEntity.unsetFromArray(anyEntity, _PropertiesToUnsetForNew);
-    }
-
-    static unsetPropertiesForSubEntityForNew(anyEntity) {
-        AnyEntity.unsetFromArray(anyEntity, _PropertiesToUnsetForSubEntityForNew);
     }
 }
 

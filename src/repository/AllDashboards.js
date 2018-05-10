@@ -1,5 +1,6 @@
 const _ = require("lodash");
 const Client = require('../Client');
+const DashboardCard = require('../domain/DashboardCard');
 
 class AllDashboards {
     static findAll() {
@@ -9,6 +10,9 @@ class AllDashboards {
     static find(dashboardName) {
         return AllDashboards.findAll().then((dashboards) => {
             let dashboard = _.find(dashboards, (dashboard) => dashboard.name === dashboardName);
+            if (_.isNil(dashboard)) {
+                console.log(`No dashboard found with name: ${dashboardName}`);
+            }
             return Client.getResource("dashboard", dashboard.id);
         });
     }
@@ -17,14 +21,12 @@ class AllDashboards {
         return Client.post("dashboard", dashboard);
     }
 
-    static addCard(dashboard, sourceCard) {
+    static addCard(dashboard, dashboardCard) {
         let subResourceName = `dashboard/${dashboard.id}/cards`;
-        return Client.post(subResourceName, {cardId: sourceCard["card_id"]}).then((createdCard) => {
-            sourceCard.id = createdCard.id;
-            _.unset(sourceCard, "updated_at");
-            _.unset(sourceCard, "card");
+        return Client.post(subResourceName, {cardId: dashboardCard["card_id"]}).then((createdCard) => {
+            dashboardCard.id = createdCard.id;
             let putPayload = {
-                "cards": [sourceCard]
+                "cards": [dashboardCard]
             };
             return Client.put(subResourceName, putPayload);
         });

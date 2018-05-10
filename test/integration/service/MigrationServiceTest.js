@@ -1,13 +1,37 @@
 const expect = require("chai").expect;
 const _ = require("lodash");
 const MigrationService = require("../../../src/service/MigrationService");
+const AllQuestionCollections = require("../../../src/repository/AllQuestionCollections");
 const Tester = require("../Tester");
 
 describe('MigrationServiceTest', () => {
-    it('copyCollections', () => {
+    let states = ["Telangana", "Puducherry", "Odisha", "A and N Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal", "Chandigarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Lakshadweep"];
+    states = ["Delhi"];
+
+    it('copyCollection', () => {
         Tester.login().then(() => {
-            MigrationService.copyQuestionCollections(["State Questions"], "Bihar");
+            states.forEach((state) => {
+                MigrationService.copyQuestionCollection("State Laqshya Questions", `${state} Laqshya Questions`);
+            });
         });
+    });
+
+    it('copy all questions from one collection to another collection', function () {
+        Tester.login().then(() =>
+            states.forEach((state) => {
+                MigrationService.copyQuestionsFromOneCollectionToAnotherCollection("State Laqshya Questions", `${state} Laqshya Questions`, (name, query) => {
+                    let returnValues = {};
+                    returnValues.name = name;
+                    returnValues.query = query.replace("'Karnataka'", `'${state}'`);
+                    return returnValues
+                });
+            }));
+    });
+
+    it('copy dashboards', function () {
+        Tester.login().then(() =>
+            _.reduce(states,
+                (acc, state) => acc.then(() => MigrationService.createDashboardFromTemplate("State - Laqshya - NQAS", "State Laqshya Questions", `${state} - Laqshya - NQAS`, '', `${state} Laqshya Questions`)), Promise.resolve()));
     });
 
     it('copyQuestionsWithoutDBChange', function () {
@@ -26,14 +50,6 @@ describe('MigrationServiceTest', () => {
             copyQuestion("F");
             copyQuestion("G");
             copyQuestion("H");
-        });
-    });
-
-    it('copy dashboard', function () {
-        Tester.login().then(() => {
-            MigrationService.copyDashboard("NQAS - Karnataka - DH", (dashboard) => {
-                dashboard.name = "NQAS - Karnataka - Laqshya";
-            });
         });
     });
 });

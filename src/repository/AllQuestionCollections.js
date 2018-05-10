@@ -7,16 +7,18 @@ class AllQuestionCollections {
         return Client.getResources("collection");
     }
 
-    static find(collectionNames) {
+    static find(collectionName) {
         return AllQuestionCollections.findAll().then((collections) => {
-            return _.filter(collections,
-                (collection) => _.some(collectionNames,
-                                            (collectionName) => QuestionCollection.hasName(collection, collectionName)));
+            return _.find(collections, (collection) => QuestionCollection.hasName(collection, collectionName));
         });
     }
 
-    static addAll(collections) {
-        return collections.map((collection) => Client.post("collection", collection));
+    static findWithQuestions(collectionName) {
+        return AllQuestionCollections.find(collectionName).then((collection) => Client.getResource("collection", collection.id));
+    }
+
+    static add(collection) {
+        return Client.post("collection", collection);
     }
 }
 

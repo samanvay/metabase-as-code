@@ -9,6 +9,18 @@ class Question {
     static unsetPropertiesForNew(question) {
         AnyEntity.unsetPropertiesForNew(question);
     }
+
+    static id(question) {
+        return question["id"];
+    }
+
+    static hasName(question, name) {
+        return Question.getName(question) === name;
+    }
+
+    static getName(question) {
+        return question["name"];
+    }
 }
 
 module.exports = Question;

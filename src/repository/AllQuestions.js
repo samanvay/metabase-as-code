@@ -10,6 +10,10 @@ class AllQuestions {
     static add(question) {
         return Client.post("card", question);
     }
+
+    static findAllInCollection(collection) {
+        return Client.getResources(`card?f=all&collection=${collection["slug"]}`);
+    }
 }
 
 module.exports = AllQuestions;
