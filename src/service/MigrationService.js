@@ -14,12 +14,12 @@ class MigrationService {
         });
     }
 
-    static copyQuestionsFromOneCollectionToAnotherCollection(sourceCollectionName, destCollectionName, modifier) {
+    static copyQuestionsFromOneCollectionToAnotherCollection(sourceCollectionName, destCollectionName, questionFilter = () => true, modifier) {
         let promises = [];
         AllQuestionCollections.find(sourceCollectionName).then((sourceCollection) => {
             AllQuestionCollections.find(destCollectionName).then((destCollection) => {
                 AllQuestions.findAllInCollection(sourceCollection).then((questions) => {
-                    questions.forEach((question) => {
+                    _.filter(questions, questionFilter).forEach((question) => {
                         Question.unsetPropertiesForNew(question);
                         question["collection_id"] = destCollection["id"];
                         question["collection"] = destCollection;

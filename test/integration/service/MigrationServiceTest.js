@@ -18,7 +18,7 @@ describe('MigrationServiceTest', () => {
     it('copy all questions from one collection to another collection', function () {
         Tester.login().then(() =>
             states.forEach((state) => {
-                MigrationService.copyQuestionsFromOneCollectionToAnotherCollection("State Laqshya Questions", `${state} Laqshya Questions`, (name, query) => {
+                MigrationService.copyQuestionsFromOneCollectionToAnotherCollection("State Laqshya Questions", `${state} Laqshya Questions`, (question) => question.name === 'Recent Assessments', (name, query) => {
                     let returnValues = {};
                     returnValues.name = name;
                     returnValues.query = query.replace("'Karnataka'", `'${state}'`);
