@@ -31,6 +31,10 @@ class AllDashboards {
             return Client.put(subResourceName, putPayload);
         });
     }
+
+    static archive(dashboard) {
+        return Client.put(`dashboard/${dashboard.id}`, {"archived": true});
+    }
 }
 
 module.exports = AllDashboards;
